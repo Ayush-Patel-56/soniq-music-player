@@ -6,6 +6,9 @@ SONIQ is a modern, Spotify-inspired music streaming platform with **Remix** and 
 
 ---
 
+🎨 Design: Figma (https://www.figma.com/make/EYhs7ocUxBkLu7tqiUHYYg/Music-Streaming-Platform-Design?t=yY7M509Yw8K8c4kG-1)
+
+
 ## ✨ Features
 
 - 🎵 Music streaming with waveform visualization
