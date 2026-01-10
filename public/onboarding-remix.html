@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SONIQ - Remix & Create. Turn your favorite songs into viral short videos.">
+    <title>SONIQ - Remix & Create</title>
+    <link rel="stylesheet" href="../src/styles/base.css">
+    <link rel="stylesheet" href="../src/styles/animations.css">
+    <link rel="stylesheet" href="../src/styles/onboarding.css">
+    <!-- Using Phosphor Icons for the video camera icon -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+
+    <div class="onboarding-container animate-entry">
+        <!-- Skip Button -->
+        <a href="#" class="skip-link">Skip</a>
+
+        <!-- Icon Section -->
+        <div class="icon-container animate-float">
+            <!-- Video Camera Icon -->
+            <i class="ph-fill ph-video-camera icon-symbol"></i>
+        </div>
+
+        <!-- Text Section -->
+        <h1 class="onboarding-title">Remix & Create</h1>
+        <p class="onboarding-desc">Turn your favorite songs into viral short videos</p>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="dot"></span>
+            <span class="dot active"></span> <!-- Step 2 Active -->
+            <span class="dot"></span>
+            <span class="dot"></span> <!-- Assuming 4 steps based on issue desc -->
+        </div>
+
+        <!-- Action Button -->
+        <button class="btn-primary">Next</button>
+    </div>
+
+    <script src="../src/scripts/app.js"></script>
+</body>
+
+</html>

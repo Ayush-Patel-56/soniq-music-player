@@ -10,13 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(transitionTimeout);
         splashScreen.classList.add('fade-out');
 
-        // Wait for transition to finish before removing from DOM flow or showing main content
+        // Wait for transition to finish before redirecting
         setTimeout(() => {
-            splashScreen.style.display = 'none';
-            if (mainContent) {
-                mainContent.classList.remove('hidden');
-                mainContent.classList.add('animate-entry');
-            }
+            // Redirect to the first onboarding page (using remix as step 2 for demo, but usually step 1)
+            // For this specific task, we'll redirect to the newly created onboarding-remix.html
+            window.location.href = 'onboarding-remix.html';
         }, 800); // Matches CSS transition time
     };
 
