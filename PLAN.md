@@ -350,3 +350,36 @@ Let's stick to the original text but format it clearly as a warning list.
 - `requestAnimationFrame`
 - Canvas
 - WebGL (optional)
+
+
+### Expected folder structure:
+/public
+  index.html
+
+/src
+  /styles
+    base.css
+    player.css
+    remix.css
+    karaoke.css
+    animations.css
+
+  /scripts
+    app.js
+    state.js
+    auth.js
+    audio.js
+    waveform.js
+    remix.js
+    karaoke.js
+    camera.js
+    api.js
+
+  /components
+    player.js
+    playlist.js
+    modal.js
+
+  /utils
+    helpers.js
+    constants.js

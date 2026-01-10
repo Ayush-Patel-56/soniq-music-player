@@ -1,0 +1,55 @@
+.splash-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 6rem;
+    font-weight: 700;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -3px;
+    margin-bottom: 0px;
+    line-height: 1.1;
+    text-align: center;
+    /* Stronger, multi-layered glow matching the new gradient */
+    filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.5)) drop-shadow(0 0 40px rgba(236, 72, 153, 0.5));
+}
+
+.subtitle-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+}
+
+
+
+@media (max-width: 768px) {
+    .logo-text {
+        font-size: 4rem;
+    }
+
+    .skip-btn {
+        top: 1.5rem;
+        right: 1.5rem;
+    }
+}
