@@ -17,7 +17,8 @@
 
     <div class="onboarding-container animate-entry">
         <!-- Skip Button -->
-        <a href="#" class="skip-link">Skip</a>
+        <a href="index.html" class="skip-link"
+            onclick="localStorage.setItem('soniq_onboarding_complete', 'true')">Skip</a>
 
         <!-- Icon Section -->
         <div class="icon-container animate-float">
@@ -34,11 +35,11 @@
             <span class="dot"></span>
             <span class="dot active"></span> <!-- Step 2 Active -->
             <span class="dot"></span>
-            <span class="dot"></span> <!-- Assuming 4 steps based on issue desc -->
         </div>
 
         <!-- Action Button -->
-        <button class="btn-primary">Next</button>
+        <!-- Action Button -->
+        <a href="onboarding-karaoke.html" class="btn-primary">Next</a>
     </div>
 
     <script src="../src/scripts/app.js"></script>

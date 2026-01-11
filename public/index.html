@@ -26,6 +26,11 @@
                 style="background: var(--primary-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 3rem;">
                 Home</h1>
             <p style="color: #888;">Welcome to SONIQ</p>
+            <br>
+            <button onclick="localStorage.removeItem('soniq_onboarding_complete'); window.location.reload();"
+                style="padding: 10px 20px; background: #333; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Reset Onboarding (Test Mode)
+            </button>
         </div>
     </main>
 
