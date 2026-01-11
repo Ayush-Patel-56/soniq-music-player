@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             // Redirect to the first onboarding page (using remix as step 2 for demo, but usually step 1)
             // For this specific task, we'll redirect to the newly created onboarding-remix.html
-            window.location.href = 'onboarding-remix.html';
+            window.location.href = 'onboarding-discover.html';
         }, 800); // Matches CSS transition time
     };
 
