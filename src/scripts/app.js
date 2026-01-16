@@ -15,12 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Wait for transition to finish
             setTimeout(() => {
                 const hasOnboarded = localStorage.getItem('soniq_onboarding_complete') === 'true';
+                console.log('Checking onboarding status:', hasOnboarded);
 
                 if (!hasOnboarded) {
+                    console.log('User not onboarded, redirecting to discover...');
                     // Redirect to onboarding if not complete
                     // Keep splash visible while redirecting to avoid flash of content
                     window.location.href = 'onboarding-discover.html';
                 } else {
+                    console.log('User onboarded, showing home page.');
                     // Only remove splash if we are staying here
                     splashScreen.style.display = 'none';
 
