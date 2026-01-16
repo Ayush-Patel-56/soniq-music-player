@@ -22,130 +22,189 @@
     </div>
 
     <!-- Main Content Placeholder -->
-    <main id="main-content" class="hidden app-container">
-        <!-- Header -->
-        <header class="home-header">
-            <div class="greeting-text">
-                <h1>Good Evening</h1>
-                <p>What do you want to hear today?</p>
+    <main id="main-content" class="hidden app-layout">
+
+        <!-- Column 1: Sidebar -->
+        <aside class="sidebar">
+            <div class="brand-logo"
+                style="padding-left: 0.5rem; margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: center; width: 100%;">
+                <div
+                    style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid #ea580c; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(234, 88, 12, 0.3);">
+                    <i class="ph-fill ph-owl" style="color: #ea580c; font-size: 1.8rem;"></i>
+                </div>
             </div>
-            <div class="user-avatar">S</div>
-        </header>
 
-        <!-- Search -->
-        <div class="search-container">
-            <div class="search-bar">
-                <i class="ph ph-magnifying-glass"></i>
-                <input type="text" placeholder="Search songs, artists, playlists...">
+            <div class="nav-menu">
+                <!-- Radio Pill -->
+                <div class="nav-btn-pill">Radio</div>
+
+                <a href="#" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-music-note" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Songs</span>
+                </a>
+
+                <!-- Active Album Link -->
+                <a href="#" class="nav-link active"
+                    style="color: white; background: transparent; font-weight: 600; padding: 0.8rem 1rem; display: flex; align-items: center;">
+                    <!-- Custom Bullseye Icon -->
+                    <div
+                        style="width: 20px; height: 20px; border: 2px solid #f9a8d4; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                        <div style="width: 8px; height: 8px; background: white; border-radius: 50%;"></div>
+                    </div>
+                    <span style="font-size: 1rem;">Albums</span>
+                </a>
+
+                <a href="#" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-user" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Artists</span>
+                </a>
+                <a href="#" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-heart" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Favourites</span>
+                </a>
+                <a href="#" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-playlist" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Playlists</span>
+                </a>
             </div>
-        </div>
 
-        <!-- Scrollable Content Area -->
-        <div style="flex: 1; overflow-y: auto; padding-bottom: 2rem;">
+            <div style="flex: 1"></div>
 
-            <!-- Recently Played -->
-            <section class="scroll-section">
-                <h2 class="section-title">Recently Played</h2>
-                <div class="cards-container">
-                    <div class="music-card">
-                        <div class="card-image gradient-1"></div>
-                        <span class="card-title">Electric Dreams</span>
-                        <span class="card-subtitle">Neon Pulse</span>
-                    </div>
-                    <div class="music-card">
-                        <div class="card-image gradient-2"></div>
-                        <span class="card-title">Midnight Vibes</span>
-                        <span class="card-subtitle">Luna Sky</span>
-                    </div>
-                    <div class="music-card">
-                        <div class="card-image gradient-3"></div>
-                        <span class="card-title">Bass Drop</span>
-                        <span class="card-subtitle">DJ Quantum</span>
-                    </div>
-                    <div class="music-card">
-                        <div class="card-image gradient-4"></div>
-                        <span class="card-title">Neon Lights</span>
-                        <span class="card-subtitle">Cyber Dreams</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Made for You -->
-            <section class="scroll-section">
-                <h2 class="section-title">Made for You</h2>
-                <div class="cards-container">
-                    <div class="music-card">
-                        <div class="card-image gradient-2"></div>
-                        <span class="card-title">Daily Mix</span>
-                        <span class="card-subtitle">Your personalized playlist</span>
-                    </div>
-                    <div class="music-card">
-                        <div class="card-image gradient-4"></div>
-                        <span class="card-title">Workout Beats</span>
-                        <span class="card-subtitle">High energy tracks</span>
-                    </div>
-                    <div class="music-card">
-                        <div class="card-image gradient-1"></div>
-                        <span class="card-title">Chill Vibes</span>
-                        <span class="card-subtitle">Relax and unwind</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Trending Remixes -->
-            <section class="scroll-section">
-                <h2 class="section-title">Trending Remixes</h2>
-                <div class="cards-container">
-                    <div class="music-card">
-                        <div class="card-image gradient-3"></div>
-                        <span class="card-title">Bass Drop</span>
-                        <span class="card-subtitle">DJ Quantum</span>
-                    </div>
-                    <div class="music-card">
-                        <div class="card-image gradient-1"></div>
-                        <span class="card-title">Neon Lights</span>
-                        <span class="card-subtitle">Cyber Dreams</span>
-                    </div>
-                    <div class="music-card">
-                        <div class="card-image gradient-2"></div>
-                        <span class="card-title">Ocean Waves</span>
-                        <span class="card-subtitle">The Indie Collective</span>
-                    </div>
-                    <div class="music-card">
-                        <div class="card-image gradient-4"></div>
-                        <span class="card-title">Starlight</span>
-                        <span class="card-subtitle">Pop Nova</span>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <a href="#" class="nav-item active">
-                <i class="ph ph-house-fill"></i>
-                <span>Home</span>
+            <a href="#" class="nav-link" style="color: rgba(255,255,255,0.6);"
+                onclick="localStorage.removeItem('soniq_onboarding_complete'); window.location.reload();">
+                <i class="ph-fill ph-gear"></i>
+                <span>Settings</span>
             </a>
-            <a href="#" class="nav-item">
+        </aside>
+
+        <!-- Column 2: Main Content (Card) -->
+        <section class="main-content-card">
+            <!-- Search -->
+            <div class="search-header">
                 <i class="ph ph-magnifying-glass"></i>
-                <span>Search</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="ph ph-video-camera"></i>
-                <span>Remix</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="ph ph-microphone-stage"></i>
-                <span>Karaoke</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="ph ph-user"></i>
-                <span>Profile</span>
-            </a>
-        </nav>
+                <input type="text" placeholder="Search your favourite Albums">
+            </div>
+
+            <!-- Hero Text -->
+            <div class="hero-text" style="margin-bottom: 2rem;">
+                <h1 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;">Albums Extravaganza</h1>
+                <p style="opacity: 0.8; font-size: 1rem;">Dive into a world of musical stories with your favourite
+                    curated albums</p>
+                <div style="margin-top: 1.5rem; font-weight: 600; opacity: 0.9;">13 albums found</div>
+            </div>
+
+            <!-- Album Grid Scrollable -->
+            <div class="album-grid">
+                <!-- Cards -->
+                <div class="album-card">
+                    <div class="album-cover"><img
+                            src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=300&q=80">
+                    </div>
+                    <div class="album-info">
+                        <h3>Bullet Song</h3>
+                        <p>MassTamilan.dev</p>
+                    </div>
+                    <i class="ph-fill ph-heart like-btn"></i>
+                </div>
+                <div class="album-card">
+                    <div class="album-cover"><img
+                            src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=300&q=80">
+                    </div>
+                    <div class="album-info">
+                        <h3>The Warriorr</h3>
+                        <p>MassTamilan.dev</p>
+                    </div>
+                    <i class="ph ph-heart like-btn"></i>
+                </div>
+                <div class="album-card">
+                    <div class="album-cover"><img
+                            src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=300&q=80">
+                    </div>
+                    <div class="album-info">
+                        <h3>Thunivu</h3>
+                        <p>MassTamilan.dev</p>
+                    </div>
+                    <i class="ph ph-heart like-btn"></i>
+                </div>
+                <div class="album-card">
+                    <div class="album-cover"><img
+                            src="https://images.unsplash.com/photo-1514525253440-b393452e8d03?auto=format&fit=crop&w=300&q=80">
+                    </div>
+                    <div class="album-info">
+                        <h3>Varisu</h3>
+                        <p>MassTamilan.dev</p>
+                    </div>
+                    <i class="ph ph-heart like-btn"></i>
+                </div>
+                <div class="album-card">
+                    <div class="album-cover"><img
+                            src="https://images.unsplash.com/photo-1506157786151-b8491531f94d?auto=format&fit=crop&w=300&q=80">
+                    </div>
+                    <div class="album-info">
+                        <h3>Jailer</h3>
+                        <p>Anirudh Ravichander</p>
+                    </div>
+                    <i class="ph ph-heart like-btn"></i>
+                </div>
+                <div class="album-card">
+                    <div class="album-cover"><img
+                            src="https://images.unsplash.com/photo-1459749411177-0473ef716e71?auto=format&fit=crop&w=300&q=80">
+                    </div>
+                    <div class="album-info">
+                        <h3>Leo</h3>
+                        <p>Anirudh Ravichander</p>
+                    </div>
+                    <i class="ph ph-heart like-btn"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Column 3: Player (Card) -->
+        <aside class="player-card">
+            <div class="player-header">Now Playing</div>
+
+            <div class="vinyl-container">
+                <div class="vinyl-grooves">
+                    <div class="vinyl-art"
+                        style="background-image: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=300&q=80');">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tone Arm -->
+            <div class="tonearm">
+                <div class="tonearm-stick"></div>
+                <div class="tonearm-head"></div>
+            </div>
+
+            <div class="player-info">
+                <h2>Bullet Song - MassTami...</h2>
+                <p>Silambarasan, Haripriya...</p>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 35%;">
+                        <div class="progress-thumb"></div>
+                    </div>
+                </div>
+                <div class="time-stamp">
+                    <span>01:29</span>
+                    <span>03:57</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn"><i class="ph ph-shuffle"></i></button>
+                <button class="control-btn"><i class="ph-fill ph-skip-back"></i></button>
+                <button class="control-btn play-btn"><i class="ph-fill ph-pause"></i></button>
+                <button class="control-btn"><i class="ph-fill ph-skip-forward"></i></button>
+                <button class="control-btn"><i class="ph ph-repeat"></i></button>
+            </div>
+        </aside>
+
+    </main>
 
 
-        <script src="../src/scripts/app.js"></script>
+    <script src="../src/scripts/app.js"></script>
 </body>
-
-</html>
