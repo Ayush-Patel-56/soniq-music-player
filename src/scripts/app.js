@@ -25,20 +25,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearTimeout(transitionTimeout);
                 splashScreen.classList.add('fade-out');
 
+                // Wait for transition to finish
                 setTimeout(() => {
-                    if (!hasOnboarded) {
-                        // Redirect to onboarding if not complete
-                        window.location.href = 'onboarding-discover.html';
-                    } else {
-                        // User onboarded, showing home page.
-                        splashScreen.style.display = 'none';
-                        // Set session active so it doesn't show again this session
-                        sessionStorage.setItem('soniq_session_active', 'true');
+                    const latestOnboardingStatus = localStorage.getItem('soniq_onboarding_complete') === 'true';
+                    console.log('Checking onboarding status:', latestOnboardingStatus);
 
-                        if (mainContent) {
-                            mainContent.classList.remove('hidden');
-                            mainContent.classList.add('animate-entry');
-                        }
+                    if (!latestOnboardingStatus) {
+                        console.log('User not onboarded, redirecting to discover...');
+                        // Keep splash visible while redirecting to avoid flash of content
+                        window.location.href = 'onboarding-discover.html';
+                        return;
+                    }
+
+                    console.log('User onboarded, showing home page.');
+                    splashScreen.style.display = 'none';
+                    // Set session active so it doesn't show again this session
+                    sessionStorage.setItem('soniq_session_active', 'true');
+
+                    if (mainContent) {
+                        mainContent.classList.remove('hidden');
+                        mainContent.classList.add('animate-entry');
                     }
                 }, 800);
             };
