@@ -461,49 +461,96 @@ body {
 /* Right Panel - Player */
 /* Column 3: Player Card */
 .player-card {
-    width: 360px;
+    width: 100px;
+    /* Default Collapsed State */
     flex-shrink: 0;
-    background: linear-gradient(180deg, #2f073f 0%, #6b1074 100%);
-    /* Bright Pink Gradient base */
+
+    /* Background & Border */
+    background: linear-gradient(180deg, #86198f 0%, #4a044e 100%);
+    border: 3px solid #1a0a25;
     border-radius: 32px;
-    padding: 3rem 2rem;
+
+    /* Layout */
+    padding: 2rem 1rem;
+    /* Less padding when collapsed */
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+    /* Shadow & Transition */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     text-align: center;
+    justify-content: flex-start;
+    /* Stack from top */
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy expand */
+    cursor: pointer;
+    z-index: 50;
+}
+
+.player-card.expanded {
+    width: 360px;
+    /* Expanded State */
+    padding: 3rem 2rem;
     justify-content: space-between;
-    /* Distribute content to fill height */
+    cursor: default;
 }
 
-.player-header {
-    font-size: 1.3rem;
-    font-weight: 700;
+/* Internal Elements Visibility Logic */
+.player-header,
+.player-info,
+.progress-section,
+.controls {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
     width: 100%;
-    text-align: center;
-    margin-bottom: 2rem;
+    /* Ensure they force layout width when expanded */
+    white-space: nowrap;
 }
 
-/* Vinyl Record Effect */
+/* Show elements when expanded */
+.player-card.expanded .player-header,
+.player-card.expanded .player-info,
+.player-card.expanded .progress-section,
+.player-card.expanded .controls {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s 0.2s;
+    /* Delay showing content until width expands */
+}
+
+/* Vinyl Record Effect - Dynamic Sizing */
 .vinyl-container {
-    width: 260px;
-    /* Increased size to fill space */
-    height: 260px;
+    width: 60px;
+    /* Small icon size when collapsed */
+    height: 60px;
     border-radius: 50%;
     background: #111;
     position: relative;
-    padding: 6px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-    /* Strong shadow */
+    padding: 2px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
     flex-shrink: 0;
+    transition: all 0.4s ease;
+    margin-top: 50%;
+    /* Center vertically when collapsed */
 }
 
+.player-card.expanded .vinyl-container {
+    width: 260px;
+    height: 260px;
+    padding: 6px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    margin-top: 0;
+}
+
+/* Vinyl Grooves */
 .vinyl-grooves {
     width: 100%;
     height: 100%;
@@ -524,7 +571,7 @@ body {
     border: 4px solid #111;
 }
 
-/* Record Arm (CSS Art) */
+/* Tone Arm - Hide when collapsed */
 .tonearm {
     position: absolute;
     top: 100px;
@@ -534,6 +581,13 @@ body {
     pointer-events: none;
     z-index: 10;
     transform: rotate(20deg);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.player-card.expanded .tonearm {
+    opacity: 1;
+    transition: opacity 0.4s 0.3s;
 }
 
 /* Player Info */
@@ -578,7 +632,7 @@ body {
 
 .progress-fill {
     height: 100%;
-    background: #fbbf24;
+    background: #ffffff;
     /* Orange/Gold fill */
     border-radius: 2px;
     position: relative;
@@ -649,7 +703,7 @@ body {
 
 .play-btn:hover {
     transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.35);
+    background: #f0c9f5;
 }
 
 /* Scrollbar Hide */

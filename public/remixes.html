@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soniq - Remix Studio</title>
+    <link rel="stylesheet" href="../src/styles/base.css">
+    <link rel="stylesheet" href="../src/styles/home.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .studio-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-icon {
+            background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+            box-shadow: 0 8px 16px rgba(190, 18, 60, 0.3);
+        }
+
+        .audio-icon {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            box-shadow: 0 8px 16px rgba(29, 78, 216, 0.3);
+        }
+
+        .action-card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .action-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .action-arrow {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+
+        .action-card:hover .action-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            gap: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .project-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .project-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            background: #333;
+            object-fit: cover;
+        }
+
+        .type-badge {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="logo-container">
+            <h1 class="logo-text">
+                <span class="letter s">S</span>
+                <span class="letter o">O</span>
+                <span class="letter n">N</span>
+                <span class="letter i">I</span>
+                <span class="letter q">Q</span>
+            </h1>
+            <p class="tagline">Feel. Remix. Perform.</p>
+        </div>
+    </div>
+
+    <main class="app-layout hidden" id="main-content">
+        <!-- Column 1: Sidebar -->
+        <aside class="sidebar">
+            <div class="brand-logo"
+                style="padding-left: 0.5rem; margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: center; width: 100%;">
+                <div
+                    style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid #ea580c; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(234, 88, 12, 0.3);">
+                    <i class="ph-fill ph-owl" style="color: #ea580c; font-size: 1.8rem;"></i>
+                </div>
+            </div>
+
+            <div class="nav-menu">
+                <div class="nav-btn-pill">Radio</div>
+
+                <a href="songs.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-music-note" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Songs</span>
+                </a>
+
+                <a href="index.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-disc" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Albums</span>
+                </a>
+
+                <a href="artists.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-microphone-stage" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Artists</span>
+                </a>
+
+                <a href="playlists.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-playlist" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Playlists</span>
+                </a>
+
+                <!-- Remixes - Active -->
+                <a href="remixes.html" class="nav-link active"
+                    style="color: white; background: transparent; font-weight: 600; padding: 0.8rem 1rem; display: flex; align-items: center;">
+                    <div
+                        style="width: 20px; height: 20px; border: 2px solid #f9a8d4; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                        <div style="width: 8px; height: 8px; background: white; border-radius: 50%;"></div>
+                    </div>
+                    <span style="font-size: 1rem;">Remixes</span>
+                </a>
+
+                <a href="karaoke.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-microphone" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Karaoke</span>
+                </a>
+
+                <a href="profile.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-user-circle" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Profile</span>
+                </a>
+            </div>
+
+            <div style="flex: 1"></div>
+
+            <a href="#" class="nav-link" style="color: rgba(255,255,255,0.6);"
+                onclick="localStorage.removeItem('soniq_onboarding_complete'); window.location.reload();">
+                <i class="ph-fill ph-gear"></i>
+                <span>Settings</span>
+            </a>
+        </aside>
+
+        <!-- Column 2: Main Content (Card) -->
+        <section class="main-content-card">
+            <!-- Header -->
+            <div class="hero-text" style="margin-bottom: 2rem;">
+                <h1 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;">Remix Studio</h1>
+                <p style="opacity: 0.8; font-size: 1rem;">Unleash your creativity. Create reels or remix tracks.</p>
+            </div>
+
+            <!-- Studio Actions -->
+            <div class="studio-actions">
+                <!-- Video Creation -->
+                <div class="action-card">
+                    <div class="action-icon video-icon">
+                        <i class="ph-fill ph-video-camera"></i>
+                    </div>
+                    <h2>Reel Creator</h2>
+                    <p>Select songs, add filters, and create stunning short videos.</p>
+                    <i class="ph-bold ph-arrow-right action-arrow"></i>
+                </div>
+
+                <!-- Audio Remixing -->
+                <div class="action-card">
+                    <div class="action-icon audio-icon">
+                        <i class="ph-fill ph-faders"></i>
+                    </div>
+                    <h2>Audio Lab</h2>
+                    <p>Remix songs, adjust tone, bass, and background beats.</p>
+                    <i class="ph-bold ph-arrow-right action-arrow"></i>
+                </div>
+            </div>
+
+            <!-- Recent Projects -->
+            <div class="section-header">
+                <h3 style="font-size: 1.2rem; font-weight: 600;">Recent Projects</h3>
+                <span style="color: #d946ef; font-size: 0.9rem; cursor: pointer;">See All</span>
+            </div>
+
+            <div class="project-list" style="overflow-y: auto; padding-right: 0.5rem; padding-bottom: 2rem;">
+                <div class="project-item">
+                    <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=150&q=80"
+                        class="project-thumb">
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 1.1rem;">Summer Vibes Reel</div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 0.3rem;">
+                            <span class="type-badge" style="color: #f43f5e;">Video</span>
+                            <span style="font-size: 0.8rem; opacity: 0.6;">Edited 2h ago</span>
+                        </div>
+                    </div>
+                    <i class="ph-bold ph-pencil-simple"
+                        style="padding: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 50%;"></i>
+                </div>
+
+                <div class="project-item">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=150&q=80"
+                        class="project-thumb">
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 1.1rem;">Bullet Song (Bass Boost)</div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 0.3rem;">
+                            <span class="type-badge" style="color: #3b82f6;">Audio</span>
+                            <span style="font-size: 0.8rem; opacity: 0.6;">Edited Yesterday</span>
+                        </div>
+                    </div>
+                    <i class="ph-bold ph-pencil-simple"
+                        style="padding: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 50%;"></i>
+                </div>
+
+                <div class="project-item">
+                    <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=150&q=80"
+                        class="project-thumb">
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; font-size: 1.1rem;">Party Mashup 2024</div>
+                        <div style="display: flex; gap: 0.5rem; margin-top: 0.3rem;">
+                            <span class="type-badge" style="color: #3b82f6;">Audio</span>
+                            <span style="font-size: 0.8rem; opacity: 0.6;">Draft</span>
+                        </div>
+                    </div>
+                    <i class="ph-bold ph-pencil-simple"
+                        style="padding: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 50%;"></i>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Column 3: Player (Card) -->
+        <aside class="player-card">
+            <div class="player-header">Now Playing</div>
+
+            <div class="vinyl-container">
+                <div class="vinyl-grooves">
+                    <div class="vinyl-art"
+                        style="background-image: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=300&q=80');">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tone Arm -->
+            <div class="tonearm">
+                <div class="tonearm-stick"></div>
+                <div class="tonearm-head"></div>
+            </div>
+
+            <div class="player-info">
+                <h2>Bullet Song - MassTami...</h2>
+                <p>Silambarasan, Haripriya...</p>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 35%;">
+                        <div class="progress-thumb"></div>
+                    </div>
+                </div>
+                <div class="time-stamp">
+                    <span>01:29</span>
+                    <span>03:57</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn"><i class="ph ph-shuffle"></i></button>
+                <button class="control-btn"><i class="ph-fill ph-skip-back"></i></button>
+                <button class="control-btn play-btn"><i class="ph-fill ph-pause"></i></button>
+                <button class="control-btn"><i class="ph-fill ph-skip-forward"></i></button>
+                <button class="control-btn"><i class="ph ph-repeat"></i></button>
+            </div>
+        </aside>
+
+    </main>
+    <script src="../src/scripts/app.js"></script>
+</body>
+
+</html>
