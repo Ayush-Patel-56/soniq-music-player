@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soniq - Artists</title>
+    <link rel="stylesheet" href="../src/styles/base.css">
+    <link rel="stylesheet" href="../src/styles/home.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Artist Specific Styles */
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 2rem;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            padding-bottom: 2rem;
+        }
+
+        .artist-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .artist-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .artist-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .artist-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .artist-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .filter-pill {
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .filter-pill.active {
+            background: #d946ef;
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="logo-container">
+            <h1 class="logo-text">
+                <span class="letter s">S</span>
+                <span class="letter o">O</span>
+                <span class="letter n">N</span>
+                <span class="letter i">I</span>
+                <span class="letter q">Q</span>
+            </h1>
+            <p class="tagline">Feel. Remix. Perform.</p>
+        </div>
+    </div>
+
+    <main class="app-layout hidden" id="main-content">
+        <!-- Column 1: Sidebar -->
+        <aside class="sidebar">
+            <div class="brand-logo"
+                style="padding-left: 0.5rem; margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: center; width: 100%;">
+                <div
+                    style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid #ea580c; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(234, 88, 12, 0.3);">
+                    <i class="ph-fill ph-owl" style="color: #ea580c; font-size: 1.8rem;"></i>
+                </div>
+            </div>
+
+            <div class="nav-menu">
+                <div class="nav-btn-pill">Radio</div>
+
+                <a href="songs.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-music-note" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Songs</span>
+                </a>
+
+                <a href="index.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-disc" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Albums</span>
+                </a>
+
+                <!-- Artists - Active -->
+                <a href="artists.html" class="nav-link active"
+                    style="color: white; background: transparent; font-weight: 600; padding: 0.8rem 1rem; display: flex; align-items: center;">
+                    <div
+                        style="width: 20px; height: 20px; border: 2px solid #f9a8d4; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                        <div style="width: 8px; height: 8px; background: white; border-radius: 50%;"></div>
+                    </div>
+                    <span style="font-size: 1rem;">Artists</span>
+                </a>
+
+                <a href="playlists.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-playlist" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Playlists</span>
+                </a>
+
+                <a href="remixes.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-faders" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Remixes</span>
+                </a>
+
+                <a href="karaoke.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-microphone" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Karaoke</span>
+                </a>
+
+                <a href="profile.html" class="nav-link" style="color: rgba(255,255,255,0.7); padding: 0.8rem 1rem;">
+                    <i class="ph-fill ph-user-circle" style="font-size: 1.2rem;"></i>
+                    <span style="font-size: 1rem;">Profile</span>
+                </a>
+            </div>
+
+            <div style="flex: 1"></div>
+
+            <a href="#" class="nav-link" style="color: rgba(255,255,255,0.6);"
+                onclick="localStorage.removeItem('soniq_onboarding_complete'); window.location.reload();">
+                <i class="ph-fill ph-gear"></i>
+                <span>Settings</span>
+            </a>
+        </aside>
+
+        <!-- Column 2: Main Content (Card) -->
+        <section class="main-content-card">
+            <!-- Search -->
+            <div class="search-header">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" placeholder="Find your favourite artist...">
+            </div>
+
+            <!-- Hero Text -->
+            <div class="hero-text"
+                style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 2rem;">
+                <div>
+                    <h1 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem;">Your Artists</h1>
+                    <p style="opacity: 0.8; font-size: 1rem;">The creators of your daily soundtrack</p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <div class="filter-pill active">All</div>
+                    <div class="filter-pill">Followed</div>
+                    <div class="filter-pill">New</div>
+                </div>
+            </div>
+
+            <!-- Artist Grid -->
+            <div class="artist-grid">
+                <!-- Artist Cards -->
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=300&q=80"
+                        class="artist-image">
+                    <div class="artist-info">
+                        <h3>Anirudh Ravichander</h3>
+                        <p>Artist</p>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80"
+                        class="artist-image">
+                    <div class="artist-info">
+                        <h3>A.R. Rahman</h3>
+                        <p>Artist</p>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=300&q=80"
+                        class="artist-image">
+                    <div class="artist-info">
+                        <h3>Sid Sriram</h3>
+                        <p>Artist</p>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80"
+                        class="artist-image">
+                    <div class="artist-info">
+                        <h3>Shreya Ghoshal</h3>
+                        <p>Artist</p>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=300&q=80"
+                        class="artist-image">
+                    <div class="artist-info">
+                        <h3>G.V. Prakash</h3>
+                        <p>Artist</p>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=300&q=80"
+                        class="artist-image">
+                    <div class="artist-info">
+                        <h3>Yuvan Shankar Raja</h3>
+                        <p>Artist</p>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80"
+                        class="artist-image">
+                    <div class="artist-info">
+                        <h3>Jonita Gandhi</h3>
+                        <p>Artist</p>
+                    </div>
+                </div>
+
+                <div class="artist-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
+                        class="artist-image">
+                    <div class="artist-info">
+                        <h3>Harris Jayaraj</h3>
+                        <p>Artist</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Column 3: Player (Card) -->
+        <aside class="player-card">
+            <div class="player-header">Now Playing</div>
+
+            <div class="vinyl-container">
+                <div class="vinyl-grooves">
+                    <div class="vinyl-art"
+                        style="background-image: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=300&q=80');">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tone Arm -->
+            <div class="tonearm">
+                <div class="tonearm-stick"></div>
+                <div class="tonearm-head"></div>
+            </div>
+
+            <div class="player-info">
+                <h2>Bullet Song - MassTami...</h2>
+                <p>Silambarasan, Haripriya...</p>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 35%;">
+                        <div class="progress-thumb"></div>
+                    </div>
+                </div>
+                <div class="time-stamp">
+                    <span>01:29</span>
+                    <span>03:57</span>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn"><i class="ph ph-shuffle"></i></button>
+                <button class="control-btn"><i class="ph-fill ph-skip-back"></i></button>
+                <button class="control-btn play-btn"><i class="ph-fill ph-pause"></i></button>
+                <button class="control-btn"><i class="ph-fill ph-skip-forward"></i></button>
+                <button class="control-btn"><i class="ph ph-repeat"></i></button>
+            </div>
+        </aside>
+
+    </main>
+
+
+    <script src="../src/scripts/app.js"></script>
+</body>
+
+</html>

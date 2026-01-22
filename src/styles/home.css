@@ -64,14 +64,16 @@ body {
 
 /* Column 3: Player Card */
 .player-card {
-    width: 360px;
+    width: 100px;
+    /* Default Collapsed State */
     flex-shrink: 0;
     background: linear-gradient(180deg, #86198f 0%, #4a044e 100%);
     /* Deep Magenta - darker version */
     border: 3px solid #1a0a25;
     /* Dark border for depth */
     border-radius: 32px;
-    padding: 3rem 2rem;
+    padding: 2rem 1rem;
+    /* Less padding when collapsed */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,7 +83,20 @@ body {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     /* Stronger shadow */
     text-align: center;
+    justify-content: flex-start;
+    /* Stack from top */
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy expand */
+    cursor: pointer;
+    z-index: 50;
+}
+
+.player-card.expanded {
+    width: 360px;
+    /* Expanded State */
+    padding: 3rem 2rem;
     justify-content: space-between;
+    cursor: default;
 }
 
 .player-header {
@@ -92,19 +107,55 @@ body {
     text-align: center;
 }
 
+/* Internal Elements Visibility Logic */
+.player-header,
+.player-info,
+.progress-section,
+.controls {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    width: 100%;
+    /* Ensure they force layout width when expanded */
+    white-space: nowrap;
+}
+
+/* Show elements when expanded */
+.player-card.expanded .player-header,
+.player-card.expanded .player-info,
+.player-card.expanded .progress-section,
+.player-card.expanded .controls {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s 0.2s;
+    /* Delay showing content until width expands */
+}
+
 /* Vinyl Record Effect */
 .vinyl-container {
-    width: 250px;
-    height: 250px;
+    width: 60px;
+    /* Small icon size when collapsed */
+    height: 60px;
     border-radius: 50%;
     background: #111;
     position: relative;
-    padding: 6px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    margin-bottom: 3rem;
+    padding: 2px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.4s ease;
+    margin-top: 50%;
+    /* Center vertically when collapsed */
+}
+
+.player-card.expanded .vinyl-container {
+    width: 260px;
+    height: 260px;
+    padding: 6px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    margin-top: 0;
 }
 
 .vinyl-grooves {
@@ -137,403 +188,13 @@ body {
     pointer-events: none;
     z-index: 10;
     transform: rotate(20deg);
+    opacity: 0;
+    transition: opacity 0.2s;
 }
 
-/* Player Info */
-.player-info {
-    width: 100%;
-    margin-bottom: 2rem;
-}
-
-.player-info h2 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.player-info p {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Progress Bar */
-.progress-section {
-    width: 100%;
-    margin-bottom: 2.5rem;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 4px;
-    background: #9333ea;
-    /* Purple track - unfilled portion */
-    border-radius: 2px;
-    position: relative;
-    margin-bottom: 0.8rem;
-    cursor: pointer;
-}
-
-.progress-fill {
-    height: 100%;
-    background: #ffffff;
-    /* White fill as per reference */
-    border-radius: 2px;
-    position: relative;
-}
-
-.progress-thumb {
-    position: absolute;
-    right: -6px;
-    top: -4px;
-    width: 12px;
-    height: 12px;
-    background: #fff;
-    /* White thumb */
-    border-radius: 50%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.time-stamp {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* Controls */
-.controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 1rem;
-}
-
-.control-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.4rem;
-    /* Standard Icon Size */
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.2s, transform 0.2s;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.control-btn:hover {
+.player-card.expanded .tonearm {
     opacity: 1;
-}
-
-.play-btn {
-    width: 64px;
-    height: 64px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    font-size: 2rem;
-    /* Larger Icon */
-    backdrop-filter: blur(10px);
-    opacity: 1;
-}
-
-.play-btn:hover {
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.3);
-}
-
-.brand-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fce7f3;
-}
-
-.brand-logo i {
-    color: #f472b6;
-    font-size: 2rem;
-}
-
-.nav-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.nav-btn-pill {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 0.8rem 1.5rem;
-    border-radius: 30px;
-    text-align: center;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.nav-btn-pill:hover {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.8rem 1rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    font-weight: 500;
-    border-radius: 12px;
-    transition: all 0.3s;
-}
-
-.nav-link:hover,
-.nav-link.active {
-    color: white;
-    background: var(--bg-glass);
-}
-
-.nav-link i {
-    font-size: 1.2rem;
-}
-
-.nav-link.active {
-    position: relative;
-}
-
-.nav-link.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 60%;
-    width: 3px;
-    background: var(--pink-accent);
-    border-radius: 0 4px 4px 0;
-}
-
-/* Main Content */
-.main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    overflow-y: auto;
-    padding-right: 1rem;
-}
-
-/* Search Bar */
-.search-header {
-    background: var(--bg-panel);
-    border-radius: 12px;
-    padding: 0.8rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    border: 1px solid var(--border-glass);
-}
-
-.search-header input {
-    background: transparent;
-    border: none;
-    color: white;
-    width: 100%;
-    outline: none;
-    font-family: inherit;
-    font-size: 1rem;
-}
-
-.search-header input::placeholder {
-    color: var(--text-muted);
-}
-
-/* Hero Section */
-.hero-text h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.hero-text p {
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-}
-
-.count-badge {
-    color: #e879f9;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-/* Album Grid */
-.album-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    overflow-y: auto;
-    padding-right: 0.5rem;
-    padding-bottom: 1rem;
-}
-
-/* Album Card */
-.album-card {
-    background: linear-gradient(180deg, rgba(20, 10, 30, 0.4) 0%, rgba(40, 20, 60, 0.4) 100%);
-    /* Darker transparent base */
-    border-radius: 24px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    position: relative;
-    transition: transform 0.3s ease, background 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    min-height: 280px;
-    /* Tall aspect ratio */
-}
-
-.album-card:hover {
-    transform: translateY(-5px);
-    background: linear-gradient(180deg, rgba(40, 20, 60, 0.6) 0%, rgba(60, 30, 90, 0.6) 100%);
-    /* Slightly lighter on hover */
-}
-
-.album-cover {
-    width: 100%;
-    aspect-ratio: 1;
-    background: #333;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.album-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.album-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-}
-
-.album-info h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.album-info p {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.like-btn {
-    position: absolute;
-    right: 1rem;
-    color: var(--text-muted);
-    transition: color 0.3s;
-}
-
-.like-btn:hover {
-    color: var(--pink-accent);
-}
-
-/* Right Panel - Player */
-/* Column 3: Player Card */
-.player-card {
-    width: 360px;
-    flex-shrink: 0;
-    background: linear-gradient(180deg, #2f073f 0%, #6b1074 100%);
-    /* Bright Pink Gradient base */
-    border-radius: 32px;
-    padding: 3rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    justify-content: space-between;
-    /* Distribute content to fill height */
-}
-
-.player-header {
-    font-size: 1.3rem;
-    font-weight: 700;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-/* Vinyl Record Effect */
-.vinyl-container {
-    width: 260px;
-    /* Increased size to fill space */
-    height: 260px;
-    border-radius: 50%;
-    background: #111;
-    position: relative;
-    padding: 6px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-    /* Strong shadow */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2rem;
-    flex-shrink: 0;
-}
-
-.vinyl-grooves {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle, #222 30%, #111 31%, #222 32%, #111 33%, #222 40%, #111 41%, #222 42%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.vinyl-art {
-    width: 45%;
-    height: 45%;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    border: 4px solid #111;
-}
-
-/* Record Arm (CSS Art) */
-.tonearm {
-    position: absolute;
-    top: 100px;
-    right: 30px;
-    width: 80px;
-    height: 120px;
-    pointer-events: none;
-    z-index: 10;
-    transform: rotate(20deg);
+    transition: opacity 0.4s 0.3s;
 }
 
 /* Player Info */
@@ -578,8 +239,8 @@ body {
 
 .progress-fill {
     height: 100%;
-    background: #fbbf24;
-    /* Orange/Gold fill */
+    background: #ffffff;
+    /* White fill as per reference */
     border-radius: 2px;
     position: relative;
 }
@@ -649,7 +310,7 @@ body {
 
 .play-btn:hover {
     transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.35);
+    background: #f0c9f5;
 }
 
 /* Scrollbar Hide */
