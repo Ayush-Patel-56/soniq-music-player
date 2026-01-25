@@ -17,7 +17,7 @@ SONIQ is a modern, Spotify-inspired music streaming platform with **Remix** and 
 - 🎤 Karaoke mode – sing or play instruments with synced lyrics
 - 🔐 Authentication using Supabase
 - 🌊 Animated backgrounds & micro-interactions
-- ⚡ Lightweight, client-first architectures
+- ⚡ Lightweight, client-first architecture
 
 ---
 
