@@ -2,7 +2,7 @@
 
 # 🎧 SONIQ – Music Streaming Platform
 
-SONIQ is a modern, Spotify-inspired music streaming platform with **Remix** and **Karaoke** features, built using **HTML, CSS, and JavaScript**, focusing on smooth UX, performance, and creator-friendly experiences.
+SONIQ a modern, Spotify-inspired music streaming platform with **Remix** and **Karaoke** features, built using **HTML, CSS, and JavaScript**, focusing on smooth UX, performance, and creator-friendly experiences.
 
 ---
 
