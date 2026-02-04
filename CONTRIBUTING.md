@@ -2,7 +2,7 @@
 
 ## 🔁 Workflow, Commit & Contribution Rules
 
-To keep the SONIQ codebase clean, stable, and scalable, we follow a structured workflow.  
+To keep the SONIQ codebase clean, stable, and scalable, we follow a proper workflow.  
 All contributors **must follow these rules**.
 
 ---
